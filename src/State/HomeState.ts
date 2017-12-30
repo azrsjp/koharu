@@ -1,8 +1,10 @@
 import {CustomState} from "Core/State/CustomState";
+import { Koharu } from "UI/Koharu";
 
 export class HomeState extends CustomState {
     private debugText: Phaser.Text;
     private isDown: boolean = false;
+    private koharu: Koharu;
     private static FlickThrethold: number = 70;
 
     init() {
@@ -15,6 +17,9 @@ export class HomeState extends CustomState {
         this.game.input.addMoveCallback(this.onMove, this);
         this.game.input.onDown.add(this.onDown, this);
         this.game.input.onUp.add(this.onUp, this);
+
+        this.koharu = new Koharu(this.game);
+        this.game.add.existing(this.koharu);
     }
 
     preload() {
