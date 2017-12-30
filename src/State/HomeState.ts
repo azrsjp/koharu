@@ -41,6 +41,9 @@ export class HomeState extends CustomState {
     }
 
     update() {
+        if (this.isGameOver) {
+            this.game.state.start("ResultState", true , false, this.score);
+        }
     }
 
     // private
@@ -63,6 +66,12 @@ export class HomeState extends CustomState {
             return;
         }
         this.isCleared = true;
+
+        const result = this.koharu.addMegane();
+        if (!result) {
+            this.isGameOver = true;
+            return;
+        }
         this.incrementScore();
     }
 
@@ -71,7 +80,38 @@ export class HomeState extends CustomState {
             return;
         }
         this.isCleared = true;
+
+        const result = this.koharu.mede();
+        if (!result) {
+            this.isGameOver = true;
+            return;
+        }
         this.incrementScore();
+    }
+
+    private dura(): number {
+        if (this.score < 10) {
+            return 1300;
+        }
+        if (this.score < 15) {
+            return 1200;
+        }
+        if (this.score < 20) {
+            return 1100;
+        }
+        if (this.score < 25) {
+            return 1000;
+        }
+        if (this.score < 30) {
+            return 900;
+        }
+        if (this.score < 35) {
+            return 800;
+        }
+        if (this.score < 40) {
+            return 700;
+        }
+        return 500;
     }
 
     private generateKoharu(isStart: boolean) {
@@ -91,7 +131,7 @@ export class HomeState extends CustomState {
         this.koharu.position.setTo(320, 200);
         this.game.add
             .tween(this.koharu)
-            .to({x: -this.koharu.width}, 1000, Phaser.Easing.Linear.caller)
+            .to({x: -this.koharu.width}, this.dura(), Phaser.Easing.Linear.caller)
             .start()
             .onComplete.addOnce(() => this.generateKoharu(false), this);
     }
