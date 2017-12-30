@@ -16,9 +16,10 @@ export class PreloadState extends CustomState {
         this.game.load.image(Res.koharu.key, Res.koharu.path);
         this.game.load.image(Res.megane.key, Res.megane.path);
         this.game.load.image(Res.btn_round.key, Res.btn_round.path);
+        this.game.load.image(Res.yumekoha.key, Res.yumekoha.path);
     }
 
     create() {
-        this.game.state.start("ResultState");
+        this.game.state.start("StartState");
     }
 }

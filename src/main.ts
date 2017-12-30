@@ -14,6 +14,7 @@ import { BootState } from "State/BootState";
 import { PreloadState } from "State/PreloadState";
 import { HomeState } from "State/HomeState";
 import { ResultState } from "State/ResultState";
+import { StartState } from "State/StartState";
 
 // ゲームの初期化
 const game = new Phaser.Game(Coord.canvasWidth, Coord.canvasHeight, Phaser.AUTO, "");
@@ -35,6 +36,7 @@ game.state.add("BootState", BootState);
 game.state.add("PreloadState", PreloadState);
 game.state.add("HomeState", HomeState);
 game.state.add("ResultState", ResultState);
+game.state.add("StartState", StartState);
 
 // エントリーポイントState開始
 game.state.start("BootState");
