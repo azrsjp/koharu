@@ -18,6 +18,6 @@ export class Resources {
 
 // 画像やSEの定義はここで行う
 export namespace Res {
-    // ロゴ
-    export const logo = new Resource('logo', 'img/misc/logo.png');
+    export const koharu = new Resource('koharu', 'img/koharu.png');
+    export const megane = new Resource('megane', 'img/megane.png');
 }
