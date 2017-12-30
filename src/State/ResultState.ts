@@ -57,7 +57,7 @@ export class ResultState extends CustomState {
         const twitter = "http://twitter.com/share"
         const url = location.href.toString();
         const hashtag = "小春ちゃんファクトリー,小春ちゃん可愛い";
-        const text = '小春ちゃんファクトリーで遊んだ結果，' + score + '人の小春ちゃんが誕生しました!';
+        const text = '小春ちゃんファクトリーで遊んだ結果，' + score + '回小春ちゃんを愛でることができました!';
 
         window.location.href = twitter + '?url=' + url + '&hashtags=' + hashtag + '&text=' + text;
     }
