@@ -13,13 +13,15 @@ export class HomeState extends CustomState {
     init() {
         super.init();
 
-        this.scoreText = this.game.add.text(10, 10, "小春ちゃん: 0", { font: '18px', fill: '#fff'});
+        this.scoreText = this.game.add.text(10, 10, "", { font: '18px', fill: '#fff'});
         this.scoreText.resolution = window.devicePixelRatio;
 
         this.game.input.maxPointers = 1;
         this.game.input.addMoveCallback(this.onMove, this);
         this.game.input.onDown.add(this.onDown, this);
         this.game.input.onUp.add(this.onUp, this);
+
+        this.initAll();
         this.generateKoharu(true);
     }
 
@@ -40,6 +42,19 @@ export class HomeState extends CustomState {
     }
 
     // private
+
+    private initAll() {
+        this.scoreText.text = "小春ちゃん: 0";
+        this.score = 0;
+        this.isDown = false;
+        this.isCleared = false;
+        this.isGameOver = false;
+
+        if (this.koharu != null) {
+            this.game.world.remove(this.koharu);
+            this.koharu = null;
+        }
+    }
 
     private judgeTap() {
         if (this.isGameOver || this.isCleared) {
