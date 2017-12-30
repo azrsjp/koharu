@@ -13,6 +13,7 @@ import { Coord } from "Core/Coord";
 import { BootState } from "State/BootState";
 import { PreloadState } from "State/PreloadState";
 import { HomeState } from "State/HomeState";
+import { ResultState } from "State/ResultState";
 
 // ゲームの初期化
 const game = new Phaser.Game(Coord.canvasWidth, Coord.canvasHeight, Phaser.AUTO, "");
@@ -33,6 +34,7 @@ document.addEventListener('touchstart', event => {
 game.state.add("BootState", BootState);
 game.state.add("PreloadState", PreloadState);
 game.state.add("HomeState", HomeState);
+game.state.add("ResultState", ResultState);
 
 // エントリーポイントState開始
 game.state.start("BootState");

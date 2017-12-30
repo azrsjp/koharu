@@ -13,6 +13,8 @@ export class HomeState extends CustomState {
     init() {
         super.init();
 
+        this.game.stage.backgroundColor = 0xF1BADE;
+
         this.scoreText = this.game.add.text(10, 10, "", { font: '18px', fill: '#fff'});
         this.scoreText.resolution = window.devicePixelRatio;
 

@@ -15,9 +15,10 @@ export class PreloadState extends CustomState {
         // アプリ全体で使う画像を画像をロード
         this.game.load.image(Res.koharu.key, Res.koharu.path);
         this.game.load.image(Res.megane.key, Res.megane.path);
+        this.game.load.image(Res.btn_round.key, Res.btn_round.path);
     }
 
     create() {
-        this.game.state.start("HomeState");
+        this.game.state.start("ResultState");
     }
 }
