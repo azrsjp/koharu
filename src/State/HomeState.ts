@@ -2,7 +2,8 @@ import {CustomState} from "Core/State/CustomState";
 import { Koharu } from "UI/Koharu";
 
 export class HomeState extends CustomState {
-    private debugText: Phaser.Text;
+    private scoreText: Phaser.Text;
+    private score: number = 0;
     private isDown: boolean = false;
     private koharu: Koharu;
     private static FlickThrethold: number = 70;
@@ -10,8 +11,8 @@ export class HomeState extends CustomState {
     init() {
         super.init();
 
-        this.debugText = this.game.add.text(0, 0, "Hello, world", { font: '14px', fill: '#fff'});
-        this.debugText.resolution = window.devicePixelRatio;
+        this.scoreText = this.game.add.text(10, 10, "小春ちゃん: 0", { font: '18px', fill: '#fff'});
+        this.scoreText.resolution = window.devicePixelRatio;
 
         this.game.input.maxPointers = 1;
         this.game.input.addMoveCallback(this.onMove, this);
@@ -40,21 +41,21 @@ export class HomeState extends CustomState {
 
     // private
 
+    private incrementScore() {
+        this.score += 1;
+        this.scoreText.text = "小春ちゃん: " + this.score.toString();
+    }
+
     private onMove(pointer: Phaser.Pointer) {
         if (!this.isDown) {
             return;
         }
         const distance = Phaser.Point.distance(this.game.input.activePointer.position, this.game.input.activePointer.positionDown);
         const isOverThretholdDistance = distance > HomeState.FlickThrethold;
-
-        if (isOverThretholdDistance && this.game.input.activePointer.isDown) {
-            this.debugText.text = "Swiped";
-        }
     }
 
     private onDown(pointer: Phaser.Pointer) {
         this.isDown = true;
-        this.debugText.text = "";
     }
 
     private onUp(pointer: Phaser.Pointer) {
@@ -65,9 +66,5 @@ export class HomeState extends CustomState {
 
         const distance = Phaser.Point.distance(this.game.input.activePointer.position, this.game.input.activePointer.positionDown);
         const isInThretholdDistance = distance <= HomeState.FlickThrethold;
-
-        if (isInThretholdDistance) {
-            this.debugText.text = "onUp";
-        }
     }
 }
