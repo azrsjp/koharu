@@ -38,7 +38,7 @@ export class ResultState extends CustomState {
         this.retryButton.position.setTo(Coord.worldCenterX - 110, 300);
         this.game.add.existing(this.retryButton);
 
-        this.shareButton = new Button(this.game, "シェアする");
+        this.shareButton = new Button(this.game, "Tweet");
         this.shareButton.setOnClickedCallback(() => {
             this.tweet();
         });
